@@ -14,7 +14,6 @@ export default function Login() {
             : theme.colors.gray[0],
       })}
     >
-      <DarkMode />
       <Signup />
     </Box>
   )
