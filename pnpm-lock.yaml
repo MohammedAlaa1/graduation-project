@@ -70,6 +70,9 @@ importers:
       '@mantine/ds':
         specifier: ^6.0.4
         version: 6.0.4(@mantine/core@6.0.4)(@mantine/hooks@6.0.4)(@mantine/prism@6.0.4)(@tabler/icons-react@2.11.0)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/form':
+        specifier: ^6.0.8
+        version: 6.0.8(react@18.2.0)
       '@mantine/hooks':
         specifier: ^6.0.4
         version: 6.0.4(react@18.2.0)
@@ -461,6 +464,16 @@ packages:
       '@tabler/icons-react': 2.11.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@mantine/form@6.0.8(react@18.2.0):
+    resolution: {integrity: sha512-0Z+4g5JGNGrEnCrrsetc4OaL8Kg5+GUVFnxi6oEHZdD3LJqknK6/OOLLCHXsNuiL0TWSeXiuYT1UihciRCm0Kg==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      fast-deep-equal: 3.1.3
+      klona: 2.0.6
+      react: 18.2.0
     dev: false
 
   /@mantine/hooks@6.0.4(react@18.2.0):
@@ -3302,6 +3315,11 @@ packages:
   /kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
+    dev: false
+
+  /klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
     dev: false
 
   /language-subtag-registry@0.3.22:

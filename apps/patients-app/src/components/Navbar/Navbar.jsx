@@ -20,6 +20,8 @@ import {
 } from "@tabler/icons-react"
 import { MantineLogo } from "@mantine/ds"
 import Link from "next/link"
+import ReactLogo from "../../assets/vercel.svg"
+import { Logo } from "./Logo"
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -90,6 +92,7 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
+//SIDE MENU DATA
 const data = [
   { link: "/", label: "Home", icon: IconBellRinging },
   { link: "/appointments", label: "Appointments", icon: IconReceipt2 },
@@ -123,7 +126,7 @@ export default function Navbar() {
     <NavbarMantine height={"100vh"} width={{ sm: 300 }} p="md">
       <NavbarMantine.Section grow>
         <Group className={classes.header} position="apart">
-          <MantineLogo size={28} />
+          <Logo />
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}
