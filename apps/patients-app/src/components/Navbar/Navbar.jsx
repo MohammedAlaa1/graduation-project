@@ -18,10 +18,8 @@ import {
   IconSwitchHorizontal,
   IconLogout,
 } from "@tabler/icons-react"
-import { MantineLogo } from "@mantine/ds"
 import Link from "next/link"
-import ReactLogo from "../../assets/vercel.svg"
-import { Logo } from "./Logo"
+import Image from "next/image"
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -126,7 +124,7 @@ export default function Navbar() {
     <NavbarMantine height={"100vh"} width={{ sm: 300 }} p="md">
       <NavbarMantine.Section grow>
         <Group className={classes.header} position="apart">
-          <Logo />
+          <Image priority src="./next.svg" height={60} width={60} />
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}
