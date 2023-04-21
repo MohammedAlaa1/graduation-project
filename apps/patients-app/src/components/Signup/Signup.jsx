@@ -11,6 +11,7 @@ import {
   Button,
   NumberInput,
 } from "@mantine/core"
+import Link from "next/link"
 
 export function Signup() {
   return (
@@ -25,10 +26,7 @@ export function Signup() {
         Welcome!
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Have an account already?{" "}
-        <Anchor size="sm" component="button">
-          log in
-        </Anchor>
+        Have an account already? <Link href="/login">log in</Link>
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
