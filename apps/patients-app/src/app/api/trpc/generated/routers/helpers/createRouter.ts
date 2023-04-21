@@ -1,7 +1,9 @@
-import * as trpc from "@trpc/server"
+import * as trpc from "@trpc/server";
 
-import { Context } from "../../../../../../lib/trpc/context.js"
+import { Context } from '../../../../../../lib/trpc/context';
 
-export const t = trpc.initTRPC.context<Context>().create()
+export const t = trpc.initTRPC.context<Context>().create();
 
-export const publicProcedure = t.procedure
+export const publicProcedure = t.procedure;
+
+
