@@ -2,7 +2,9 @@
 import { trpc } from "../lib/trpc/trpc"
 
 export default function HelloTRPC() {
-  let { data: patients } = trpc.patient.useQuery()
+  let { data: patients } = trpc.patient.findManyPatient.useQuery({
+    where: { name: "Alice" },
+  })
 
   console.log(patients)
 
