@@ -1,5 +1,4 @@
 "use client"
-
 import { CacheProvider } from "@emotion/react"
 import {
   useEmotionCache,
