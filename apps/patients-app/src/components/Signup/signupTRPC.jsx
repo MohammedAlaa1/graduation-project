@@ -21,5 +21,5 @@ export default function signupTRPC() {
     })
   }
 
-  return <Signup saveFormDataToDB={saveFormDataToDB()} />
+  return <Signup />
 }

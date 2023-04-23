@@ -15,11 +15,12 @@ import {
 import { useForm } from "@mantine/form"
 import Link from "next/link"
 
-export function Signup({ saveFormDataToDB }) {
+export function Signup() {
   const form = useForm({
     initialValues: {
       name: "",
       email: "",
+      password: formData.password,
       age: 10,
     },
 
