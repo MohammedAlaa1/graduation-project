@@ -12,23 +12,9 @@ import {
   Button,
   NumberInput,
 } from "@mantine/core"
-import { useForm } from "@mantine/form"
 import Link from "next/link"
 
 export function Signup() {
-  const form = useForm({
-    initialValues: {
-      name: "",
-      email: "",
-      password: formData.password,
-      age: 10,
-    },
-
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-    },
-  })
-
   return (
     <Container size={420} my={40}>
       <Title

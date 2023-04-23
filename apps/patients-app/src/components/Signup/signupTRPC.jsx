@@ -1,6 +1,7 @@
 "use client"
 import { trpc } from "../../lib/trpc/trpc"
 import { Signup } from "./Signup"
+import { useForm } from "@mantine/form"
 
 export default function signupTRPC() {
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
@@ -20,6 +21,19 @@ export default function signupTRPC() {
       },
     })
   }
+
+  const form = useForm({
+    initialValues: {
+      name: "",
+      email: "",
+      password: formData.password,
+      age: 10,
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  })
 
   return <Signup />
 }
