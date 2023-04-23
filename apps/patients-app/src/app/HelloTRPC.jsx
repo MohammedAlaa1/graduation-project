@@ -3,7 +3,7 @@ import { trpc } from "../lib/trpc/trpc"
 import { TextInput, Text, Button, Group, Box } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
-export default function HelloTRPC({ customEmail }) {
+export default function HelloTRPC() {
   //get data from API
   // let apiData = fetch(..)
 
@@ -54,7 +54,7 @@ export default function HelloTRPC({ customEmail }) {
 
   return (
     <>
-      {usersData &&
+      {/*usersData &&
         usersData.map((user) => (
           <>
             <p>Hello, {user.name}</p>
@@ -62,9 +62,9 @@ export default function HelloTRPC({ customEmail }) {
               {user.age}
             </Text>
           </>
-        ))}
+        ))*/}
 
-      {/* {patients &&
+      {patients &&
         patients.map((patient) => (
           <>
             <p key={patient.id}>Hello, {patient.name}</p>
@@ -73,7 +73,7 @@ export default function HelloTRPC({ customEmail }) {
             </Text>
             <Text c="teal.4">{patient.age}</Text>
           </>
-        ))} */}
+        ))}
 
       <Box maw={300} mx="auto">
         <form onSubmit={form.onSubmit((values) => saveFormDataToDB(values))}>

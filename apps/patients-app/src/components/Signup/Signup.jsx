@@ -1,3 +1,4 @@
+"use client"
 import {
   TextInput,
   PasswordInput,
@@ -11,9 +12,22 @@ import {
   Button,
   NumberInput,
 } from "@mantine/core"
+import { useForm } from "@mantine/form"
 import Link from "next/link"
 
-export function Signup() {
+export function Signup({ saveFormDataToDB }) {
+  const form = useForm({
+    initialValues: {
+      name: "",
+      email: "",
+      age: 10,
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  })
+
   return (
     <Container size={420} my={40}>
       <Title
@@ -30,32 +44,35 @@ export function Signup() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput placeholder="Your name" label="Full name" withAsterisk />
-        <TextInput
-          label="Email"
-          placeholder="example@gmail.com"
-          required
-          mt="md"
-        />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-        />
-        <NumberInput
-          defaultValue={18}
-          placeholder="Your age"
-          label="Your age"
-          mt="md"
-          withAsterisk
-        />
-        <Group position="apart" mt="lg">
-          <Checkbox label="Agree to the policy" />
-        </Group>
-        <Button fullWidth mt="xl">
-          Sign up
-        </Button>
+        <form onSubmit={form.onSubmit((values) => saveFormDataToDB(values))}>
+          <TextInput placeholder="Your name" label="Full name" withAsterisk />
+          <TextInput
+            label="Email"
+            placeholder="example@gmail.com"
+            required
+            mt="md"
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Your password"
+            required
+            mt="md"
+          />
+          <NumberInput
+            defaultValue={18}
+            placeholder="Your age"
+            label="Your age"
+            mt="md"
+            withAsterisk
+          />
+
+          <Group position="apart" mt="lg">
+            <Checkbox label="Agree to the policy" />
+          </Group>
+          <Button fullWidth mt="xl">
+            Sign up
+          </Button>
+        </form>
       </Paper>
     </Container>
   )

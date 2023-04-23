@@ -6,17 +6,17 @@ generator client {
 }
 
 generator trpc {
-  provider          = "prisma-trpc-generator"
-  withZod           = true
-  withMiddleware    = false
-  withShield        = false
-  contextPath       = "../lib/trpc/context"
-  output                = "../app/api/trpc/generated"
+  provider       = "prisma-trpc-generator"
+  withZod        = true
+  withMiddleware = false
+  withShield     = false
+  contextPath    = "../lib/trpc/context"
+  output         = "../app/api/trpc/generated"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL_CLOUD")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL_CLOUD")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -24,6 +24,7 @@ model Patient {
   id          String        @id @default(uuid())
   name        String
   email       String        @unique
+  password    String
   age         Int
   phoneNumber Int           @unique
   address     String
@@ -35,6 +36,7 @@ model Doctor {
   id               String        @id @default(uuid())
   name             String
   email            String        @unique
+  password         String
   age              Int
   phoneNumber      Int           @unique
   address          String

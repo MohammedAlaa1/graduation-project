@@ -3,7 +3,7 @@ import DarkMode from "../../components/DarkMode/DarkMode"
 import { Box, Container } from "@mantine/core"
 import { Signup } from "../../components/Signup/Signup"
 
-export default function Login() {
+export default function signup() {
   return (
     <Box
       sx={(theme) => ({
