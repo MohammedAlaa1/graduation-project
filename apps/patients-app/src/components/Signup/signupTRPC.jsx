@@ -9,6 +9,7 @@ export default function signupTRPC() {
       console.log("SUCCESS", data)
     },
   })
+
   const saveFormDataToDB = async (formData) => {
     console.log("USER DATA", formData)
 
