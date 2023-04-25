@@ -1,32 +1,30 @@
 "use client"
 import { trpc } from "../../lib/trpc/trpc"
 import { useForm } from "@mantine/form"
-import SignUpForm from './components/SignupForm'
+import SignUpForm from "./components/SignupForm"
 
 export default function Signup() {
-
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
     onSuccess: (data, variables, context) => {
-        console.log("SUCCESS", data)
-        //run custom code on success
+      console.log("SUCCESS", data)
+      //run custom code on success
     },
-})
+  })
 
-  const saveFormDataToDB = async () => {
+  const saveFormDataToDB = async ({ formData }) => {
     console.log("SAVING USER DATA", formData)
 
     insertNewPatient.mutate({
-        data: {
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-            age: parseInt(formData.age),
-            phoneNumber: parseInt(formData.phoneNumber),
-            address: formData.address
-        },
+      data: {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        age: parseInt(formData.age),
+        phoneNumber: parseInt(formData.phoneNumber),
+        address: formData.address,
+      },
     })
-}
-
+  }
 
   const form = useForm({
     initialValues: {
@@ -35,7 +33,7 @@ export default function Signup() {
       password: "",
       age: 10,
       phoneNumber: 5454,
-      address: ""
+      address: "",
     },
 
     validate: {
@@ -43,7 +41,5 @@ export default function Signup() {
     },
   })
 
-  return (
-<SignUpForm form={form}  saveFormDataToDB={saveFormDataToDB} />
-  )
+  return <SignUpForm form={form} saveFormDataToDB={saveFormDataToDB} />
 }
