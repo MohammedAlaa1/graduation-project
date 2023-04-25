@@ -1,7 +1,7 @@
 "use client"
 import DarkMode from "../../components/DarkMode/DarkMode"
 import { Box, Container } from "@mantine/core"
-import { signupTRPC } from "../../components/Signup/signupTRPC"
+import Signup  from "../../components/Signup/Signup"
 
 export default function signup() {
   return (
@@ -14,7 +14,7 @@ export default function signup() {
             : theme.colors.gray[0],
       })}
     >
-      <signupTRPC />
+      <Signup />
     </Box>
   )
 }
