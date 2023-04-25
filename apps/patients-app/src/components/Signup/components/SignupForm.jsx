@@ -14,7 +14,7 @@ import {
 } from "@mantine/core"
 import Link from "next/link"
 
-export default SignUpForm({form}) {
+export default function SignUpForm({form ,saveFormDataToDB}) {
     return(
         <Container size={420} my={40}>
         <Title
@@ -31,7 +31,7 @@ export default SignUpForm({form}) {
         </Text>
   
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <form onSubmit={form.onSubmit((values) => saveData({values}))}>
+          <form onSubmit={form.onSubmit((values) => saveFormDataToDB({values}))}>
             <TextInput placeholder="Your name" label="Full name" withAsterisk             {...form.getInputProps('name')}
    />
             <TextInput

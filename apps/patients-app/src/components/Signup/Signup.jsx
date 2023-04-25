@@ -1,7 +1,7 @@
 "use client"
 import { trpc } from "../../lib/trpc/trpc"
 import { useForm } from "@mantine/form"
-import SignUpForm from './components/SignUpForm'
+import SignUpForm from './components/SignupForm'
 
 export default function Signup() {
 
@@ -44,6 +44,6 @@ export default function Signup() {
   })
 
   return (
-<SignUpForm form={form} />
+<SignUpForm form={form}  saveFormDataToDB={saveFormDataToDB} />
   )
 }
