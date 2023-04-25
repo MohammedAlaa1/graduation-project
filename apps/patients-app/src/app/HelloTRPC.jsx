@@ -41,9 +41,9 @@ export default function HelloTRPC() {
   const form = useForm({
     initialValues: {
       email: "",
-      age: 10,
       address: "",
       name: "",
+      age: 10,
       phoneNumber: 10,
     },
 

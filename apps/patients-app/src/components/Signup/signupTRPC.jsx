@@ -36,5 +36,5 @@ export default function signupTRPC() {
     },
   })
 
-  return <Signup />
+  return {<SignUp />}
 }
