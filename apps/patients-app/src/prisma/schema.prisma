@@ -31,9 +31,9 @@ model Patient {
   height         Float?
   weight         Float?
   gender         Float?
-  Doctors        Doctor[]
-  Appointment    Appointment[]
-  medicalHistory medicalReport[]
+  doctors        Doctor[]
+  appointment    Appointment[]
+  medicalHistory MedicalReport[]
 }
 
 model Doctor {
@@ -48,9 +48,9 @@ model Doctor {
   yeasOfExperience Int
   availability     String[]
   sessionPrice     Float
-  Patient          Patient[]
-  Appointment      Appointment[]
-  medicalReport    medicalReport[]
+  patient          Patient[]
+  appointment      Appointment[]
+  medicalReport    MedicalReport[]
 }
 
 model Appointment {
@@ -66,11 +66,11 @@ model Appointment {
   patientId       String
 }
 
-model medicalReport {
+model MedicalReport {
   id           String  @id @default(uuid())
   prescription String
-  Doctor       Doctor  @relation(fields: [doctorId], references: [id])
+  doctor       Doctor  @relation(fields: [doctorId], references: [id])
   doctorId     String
-  Patient      Patient @relation(fields: [patientId], references: [id])
+  patient      Patient @relation(fields: [patientId], references: [id])
   patientId    String
 }
