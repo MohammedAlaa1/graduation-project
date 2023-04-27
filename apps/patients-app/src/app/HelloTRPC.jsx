@@ -21,7 +21,7 @@ export default function HelloTRPC() {
   //   }
   // )
 
-  let { data: doctor } = trpc.doctor.findManyDoctor.useQuery(
+  let { data: doctors } = trpc.doctor.findManyDoctor.useQuery(
     {
       where: { specialty: "Neurology" },
     },
@@ -41,8 +41,7 @@ export default function HelloTRPC() {
       },
     }
   )
-
-  console.log("Doctor", doctor)
+  console.log("Doctor", doctors)
 
   // FIRST STEP FOR DATA MUTATION (CREATE/UPDATE etc)
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
