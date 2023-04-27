@@ -9,7 +9,7 @@ export function BookingForm() {
   /*reasonForVisit  String
   appointmentDate DateTime @unique*/
   let {data: string} = trpc.doctor.findManyDoctor.useQuery({
-    select:(data) => data.speciality,
+    select:(data) => data.specialty,
   })
 
   console.log({data: string})
