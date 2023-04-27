@@ -4,16 +4,24 @@ import { TextInput, Text, Button, Group, Box } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
 export default function HelloTRPC() {
-  //get data from API
-  // let apiData = fetch(..)
+  let { data: doctor } = trpc.doctor.findManyDoctor.useQuery(
+    {
+      where: { specialty: "Neurology" },
+    },
+    {
+      select: (doctors) =>
+        doctors?.map((doctor) => {
+          return {
+            specialty: doctor?.specialty,
+            age: doctor?.age,
+            name: doctor?.name,
+            email: doctor?.email,
+          }
+        }),
+    }
+  )
 
-  //    // where: { email: customEmail },
-
-  let { data: patients } = trpc.patient.findManyPatient.useQuery({
-    where: { email: "mo2@prisma.io" },
-  })
-
-  let { data: usersData } = trpc.getUsers.useQuery()
+  console.log("Doctor", doctor)
 
   // FIRST STEP FOR DATA MUTATION (CREATE/UPDATE etc)
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
@@ -64,7 +72,7 @@ export default function HelloTRPC() {
           </>
         ))*/}
 
-      {patients &&
+      {/* {patients &&
         patients.map((patient) => (
           <>
             <p key={patient.id}>Hello, {patient.name}</p>
@@ -73,7 +81,7 @@ export default function HelloTRPC() {
             </Text>
             <Text c="teal.4">{patient.age}</Text>
           </>
-        ))}
+        ))} */}
 
       <Box maw={300} mx="auto">
         <form onSubmit={form.onSubmit((values) => saveFormDataToDB(values))}>
