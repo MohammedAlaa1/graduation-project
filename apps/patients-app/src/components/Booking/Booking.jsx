@@ -8,11 +8,15 @@ import { trpc } from '@/lib/trpc/trpc';
 export function BookingForm() {
   /*reasonForVisit  String
   appointmentDate DateTime @unique*/
-  let {data: string} = trpc.doctor.findManyDoctor.useQuery({
-    select:(data) => data.specialty,
+  let {data: doctor} = trpc.doctor.findManyDoctor.useQuery({
+    select:(data) =>{    
+        let specialtyArray = []
+        doctor.map((data) => {return(specialtyArray.push(data.specialty))})
+    },
   })
+  
 
-  console.log({data: string})
+  console.log({data: doctor})
 
   const form = useForm({
     initialValues: {
@@ -61,7 +65,7 @@ export function BookingForm() {
         label="Doctor specilization"
         name="specilization"
         placeholder="Pick a specilization"
-        data={['React','Angular', 'Svelte','Vue',]}
+        data={['1','2']}
         {...form.getInputProps('specilization')}
         />
         <SelectDoctor
