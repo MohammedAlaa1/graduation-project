@@ -4,20 +4,41 @@ import { TextInput, Text, Button, Group, Box } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
 export default function HelloTRPC() {
+  // let { data: doctor } = trpc.doctor.findManyDoctor.useQuery(
+  //   {
+  //     where: { specialty: "Neurology" },
+  //   },
+  //   {
+  //     select: (doctors) =>
+  //       doctors?.map((doctor) => {
+  //         return {
+  //           specialty: doctor?.specialty,
+  //           age: doctor?.age,
+  //           name: doctor?.name,
+  //           email: doctor?.email,
+  //         }
+  //       }),
+  //   }
+  // )
+
   let { data: doctor } = trpc.doctor.findManyDoctor.useQuery(
     {
       where: { specialty: "Neurology" },
     },
+
     {
-      select: (doctors) =>
-        doctors?.map((doctor) => {
-          return {
-            specialty: doctor?.specialty,
-            age: doctor?.age,
-            name: doctor?.name,
-            email: doctor?.email,
-          }
-        }),
+      select: (data) => {
+        let specialtyArray = []
+        data.map((doctor) => {
+          specialtyArray.push(doctor?.specialty)
+          console.log("VALUES", doctor.specialty, specialtyArray)
+
+          // DON"T do this. Return at the end.
+          // return specialtyArray
+        })
+        //RETURN HERE
+        return specialtyArray
+      },
     }
   )
 
