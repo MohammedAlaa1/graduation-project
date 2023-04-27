@@ -12,11 +12,12 @@ export function BookingForm() {
     select:(data) =>{    
         let specialtyArray = []
         doctor.map((data) => {return(specialtyArray.push(data.specialty))})
+        console.log(specialtyArray)
+
     },
   })
   
 
-  console.log({data: doctor})
 
   const form = useForm({
     initialValues: {
