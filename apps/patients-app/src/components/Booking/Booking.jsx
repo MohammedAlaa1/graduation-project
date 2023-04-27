@@ -9,9 +9,7 @@ export function BookingForm() {
   /*reasonForVisit  String
   appointmentDate DateTime @unique*/
   let {data: string} = trpc.doctor.findManyDoctor.useQuery({
-    select: {
-      specialty: true
-    }
+    select:(data) => data.specialty,
   })
 
   console.log({data: string})
@@ -60,7 +58,7 @@ export function BookingForm() {
           {...form.getInputProps('name')}
         />
         <Select
-        label="doctor specilization"
+        label="Doctor specilization"
         name="specilization"
         placeholder="Pick a specilization"
         data={['React','Angular', 'Svelte','Vue',]}
