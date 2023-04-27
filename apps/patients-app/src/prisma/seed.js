@@ -2,17 +2,22 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 
 async function main() {
-  const alice = await prisma.patient.create({
+  const Anas = await prisma.doctor.create({
     data: {
-      name: "Alice",
-      email: "alice@prisma.com",
-      age: 29,
-      phoneNumber: 4344,
-      address: "World",
+      name: "Anas",
+      email: "Anas@prisma.com",
+      password: "Anas2030",
+      age: 70,
+      phoneNumber: 01010101,
+      address: "Egypt",
+      specialty: "Neurology",
+      yeasOfExperience: 20,
+      availability: ["Saturday", "Friday"],
+      sessionPrice: 40
     },
   })
 
-  console.log({ alice })
+  console.log({ Anas })
 }
 main()
   .then(async () => {

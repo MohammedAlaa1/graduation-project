@@ -21,39 +21,56 @@ datasource db {
 }
 
 model Patient {
-  id          String        @id @default(uuid())
-  name        String
-  email       String        @unique
-  password    String
-  age         Int
-  phoneNumber Int           @unique
-  address     String
-  Doctors     Doctor[]
-  Appointment Appointment[]
+  id             String          @id @default(uuid())
+  name           String
+  email          String          @unique
+  password       String
+  age            Int
+  phoneNumber    Int             @unique
+  address        String
+  height         Float?
+  weight         Float?
+  gender         Float?
+  Doctors        Doctor[]
+  Appointment    Appointment[]
+  medicalHistory medicalReport[]
 }
 
 model Doctor {
-  id               String        @id @default(uuid())
+  id               String          @id @default(uuid())
   name             String
-  email            String        @unique
+  email            String          @unique
   password         String
   age              Int
-  phoneNumber      Int           @unique
+  phoneNumber      Int             @unique
   address          String
   specialty        String
   yeasOfExperience Int
+  availability     String[]
+  sessionPrice     Float
   Patient          Patient[]
   Appointment      Appointment[]
+  medicalReport    medicalReport[]
 }
 
 model Appointment {
   id              String   @id @default(uuid())
   reasonForVisit  String
-  bookingDate     DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   appointmentDate DateTime @unique
-  isCanceled      Boolean
+  status          String?
   doctor          Doctor   @relation(fields: [doctorId], references: [id])
   doctorId        String
   patient         Patient  @relation(fields: [patientId], references: [id])
   patientId       String
+}
+
+model medicalReport {
+  id           String  @id @default(uuid())
+  prescription String
+  Doctor       Doctor  @relation(fields: [doctorId], references: [id])
+  doctorId     String
+  Patient      Patient @relation(fields: [patientId], references: [id])
+  patientId    String
 }
