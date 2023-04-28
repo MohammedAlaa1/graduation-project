@@ -14,7 +14,7 @@ export default function Appointments() {
       w={"100%"}
       h={"100%"}
     >
-      Appointments Page
+      <h2>Appointments</h2>
     </Container>
   )
 }

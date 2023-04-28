@@ -1,41 +1,73 @@
-import { TextInput, Textarea, SimpleGrid, Group, Title, Button, Select } from '@mantine/core';
+import { NumberInput, Textarea, SimpleGrid, Group, Title, Button, Select } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { DateTimePicker } from '@mantine/dates';
-//import { date } from 'zod';
 import { SelectDoctor } from './SelectDoctor';
 import { trpc } from '@/lib/trpc/trpc'; 
 
 export function BookingForm() {
   /*reasonForVisit  String
   appointmentDate DateTime @unique*/
-  let {data: doctor} = trpc.doctor.findManyDoctor.useQuery({
-    select:(data) =>{    
-        let specialtyArray = []
-        doctor.map((data) => {return(specialtyArray.push(data.specialty))})
-        console.log(specialtyArray)
+  let { data: doctors } = trpc.doctor.findManyDoctor.useQuery(
+    {
+      //where: { specialty: "Neurology" },
+    },
+    
+    {
+      select: (data) => {
+        let specialtyArray = []
+        data.map((doctor) => {
+          specialtyArray.push(doctor?.specialty)
+          console.log("VALUES", doctor.specialty, specialtyArray)
 
+          // DON"T do this. Return at the end.
+          // return specialtyArray
+        })
+        let specialtySet = new Set(specialtyArray)
+        specialtyArray = Array.from(specialtySet)
+        //RETURN HERE
+        return specialtyArray
+      },
+    }
+  )
+  console.log("Doctor", doctors)
+
+  let insertNewPatient = trpc.patient.createOnePatient.useMutation({
+    onSuccess: (data, variables, context) => {
+      console.log("SUCCESS", data)
+      //run custom code on success
     },
   })
-  
 
+  const saveFormDataToDB = async ({ formData }) => {
+    console.log("SAVING USER DATA", formData)
+
+    insertNewPatient.mutate({
+      data: {
+        reasonForVisit: formData.reasonForVisit,
+        date: formData.date,
+      },
+    })
+  }
 
   const form = useForm({
     initialValues: {
-      date: '',
       reasonForVisit: '',
-      email: '',
-      subject: '',
-      message: '',
+      date: '',
+      //phoneNumber: 0,
+      //specilization:'',
+
     },
-    validate: {
+   /*validate: {
       name: (value) => value.trim().length < 2,
       email: (value) => !/^\S+@\S+$/.test(value),
       subject: (value) => value.trim().length === 0,
-    },
+    },*/
   });
 
   return (
-    <form onSubmit={form.onSubmit(() => {})}>   
+    <form onSubmit={form.onSubmit((values) =>
+      saveFormDataToDB({ formData: values })
+    )}>   
       <Title
         order={2}
         size="h1"
@@ -56,17 +88,21 @@ export function BookingForm() {
       maw={400}
       {...form.getInputProps('date')}
         />
-        <TextInput
-          label="Name"
-          placeholder="Name"
-          name="name"
-          {...form.getInputProps('name')}
+        <NumberInput
+            defaultValue={0}
+            placeholder="Your phone number"
+            label="Phone number"
+            name = "phoneNumber"
+            mt="md"
+            withAsterisk
+            {...form.getInputProps("phoneNumber")}
         />
         <Select
         label="Doctor specilization"
         name="specilization"
         placeholder="Pick a specilization"
-        data={['1','2']}
+        data={doctors}
+        
         {...form.getInputProps('specilization')}
         />
         <SelectDoctor
@@ -80,8 +116,8 @@ export function BookingForm() {
           maxRows={10}
           minRows={5}
           autosize
-          name="ReasonOfVisit"
-          {...form.getInputProps('ReasonOfVisit')}
+          name="ReasonForVisit"
+          {...form.getInputProps('ReasonForVisit')}
         />
 
       <Group position="center" mt="xl">
