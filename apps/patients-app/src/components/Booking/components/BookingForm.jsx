@@ -12,15 +12,20 @@ import SelectDoctor from "./SelectDoctor"
 import { trpc } from "@/lib/trpc/trpc"
 import { useForm } from "@mantine/form"
 
-export default function BookingForm({ docSpecialities, saveBooking }) {
-  console.log("BOOKING FORM COMPONENT")
+export default function BookingForm({
+  docSpecialities,
+  getSpecialitySelector,
+  saveBooking,
+}) {
+  // console.log("BOOKING FORM COMPONENT")
 
   const form = useForm({
     initialValues: {
       reasonForVisit: "",
       bookingDate: "",
-      phoneNumber: 0,
+      phoneNumber: 100,
       specilization: "",
+      doctor: "",
     },
     /*validate: {
           name: (value) => value.trim().length < 2,
@@ -28,6 +33,12 @@ export default function BookingForm({ docSpecialities, saveBooking }) {
           subject: (value) => value.trim().length === 0,
         },*/
   })
+
+  function getSpeciality() {
+    getSpecialitySelector({ value: form.values.specilization })
+  }
+
+  console.log(form.values.specilization)
   return (
     <form
       onSubmit={form.onSubmit((submitValues) =>
@@ -64,6 +75,9 @@ export default function BookingForm({ docSpecialities, saveBooking }) {
         <Select
           label="Doctor specilization"
           placeholder="Pick a specilization"
+          //SPREAD OPERATOR
+
+          onChange={getSpeciality()}
           data={[...docSpecialities()]}
           {...form.getInputProps("specilization")}
         />

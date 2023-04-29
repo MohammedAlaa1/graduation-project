@@ -5,7 +5,9 @@ export default function Booking() {
   console.log("BOOKING ROOT COMPONENT")
 
   let { data: doctors } = trpc.doctor.findManyDoctor.useQuery({})
+  console.log("Doctors data TRPC:", doctors)
 
+  // FUNCTION TO RETURN SET WITH SPECIALTIES
   const doctorsSpecialtiesSet = () => {
     let docSpec = new Set()
 
@@ -14,6 +16,18 @@ export default function Booking() {
         return docSpec.add(doc.specialty)
       })
     return docSpec
+  }
+
+  //match = speciality (NEUROLOGY)
+  //Data set = doctors
+
+  // WRITE A FUNCTION THAT RETURN A DOCTOR NAME BASED ON SPECIALITY
+
+  const getDoctorNameArray = ({ value }) => {
+    console.log("SPECIALITY DATA from SELECTOR:", value)
+    let dataSet = doctors
+    // DO LOGIC HERE
+    return null
   }
 
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
@@ -37,6 +51,7 @@ export default function Booking() {
     <BookingForm
       docSpecialities={doctorsSpecialtiesSet}
       saveBooking={saveFormDataToDB}
+      getSpecialitySelector={getDoctorNameArray}
     />
   )
 }
