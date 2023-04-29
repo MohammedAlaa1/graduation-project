@@ -93,7 +93,7 @@ const useStyles = createStyles((theme) => ({
 //SIDE MENU DATA
 const data = [
   { link: "/", label: "Home", icon: IconBellRinging },
-  { link: "/appointments", label: "Appointments", icon: IconReceipt2 },
+  { link: "/booking", label: "Appointments", icon: IconReceipt2 },
   { link: "/history", label: "Medical History", icon: IconFingerprint },
   { link: "/billing", label: "Billing", icon: Icon2fa },
   { link: "/chat", label: "Chat ", icon: IconDatabaseImport },
@@ -124,7 +124,7 @@ export default function Navbar() {
     <NavbarMantine height={"100vh"} width={{ sm: 300 }} p="md">
       <NavbarMantine.Section grow>
         <Group className={classes.header} position="apart">
-          <Image priority src="./next.svg" height={60} width={60} />
+          <Image priority src="./next.svg" height={60} width={60} alt="Logo" />
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}

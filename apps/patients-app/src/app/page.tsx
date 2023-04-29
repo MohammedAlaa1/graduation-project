@@ -18,7 +18,7 @@ export default function Home() {
     >
       <>
         Dashboard Page
-        <HelloTRPC />
+        {/* <HelloTRPC /> */}
       </>
     </Container>
   )
