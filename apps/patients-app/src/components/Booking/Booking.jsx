@@ -27,7 +27,12 @@ export default function Booking() {
     console.log("SPECIALITY DATA from SELECTOR:", value)
     let dataSet = doctors
     // DO LOGIC HERE
-    return null
+    let filteredDocs = dataSet?.filter(function(el){
+      return el.specialty === value
+    })
+    let names = filteredDocs?.map((obj)=>obj.name)
+    //console.log("docs names:",names)
+    return names
   }
 
   let insertNewPatient = trpc.patient.createOnePatient.useMutation({
@@ -39,11 +44,12 @@ export default function Booking() {
   const saveFormDataToDB = async ({ values }) => {
     console.log("SAVING USER DATA", values)
 
-    // insertNewPatient.mutate({
+  //   insertNewPatient.mutate({
     //   data: {
-    //     reasonForVisit: values.reasonForVisit,
-    //     date: values.bookingDate,
-    //   },
+      //   reasonForVisit: values.reasonForVisit,
+        // appointmentDate: values.bookingDate,
+         
+      // },
     // })
   }
 

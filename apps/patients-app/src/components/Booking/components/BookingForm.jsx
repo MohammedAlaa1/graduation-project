@@ -81,7 +81,7 @@ export default function BookingForm({
           data={[...docSpecialities()]}
           {...form.getInputProps("specilization")}
         />
-        <SelectDoctor form={form} />
+        <SelectDoctor form={form} getSpecialitySelector={getSpecialitySelector}/>
       </SimpleGrid>
       <Textarea
         mt="md"

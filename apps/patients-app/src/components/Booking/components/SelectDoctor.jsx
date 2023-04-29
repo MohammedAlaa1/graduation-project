@@ -46,20 +46,27 @@ const data = [
 //   )
 // )
 
-export default function SelectDoctor({ form }) {
+export default function SelectDoctor({ form,getSpecialitySelector }) {
+  function getSpeciality() {
+    console.log("its me new array",getSpecialitySelector({ value: form.values.specilization }))
+    return getSpecialitySelector({ value: form.values.specilization })
+  }
   return (
     <Select
+      allowDeselect
+      clearable
+      creatable
       name="doctor"
       label="Choose doctor"
       placeholder="Pick a doctor"
       //   itemComponent={SelectItem}
-      data={data}
+      data={getSpeciality()}
       searchable
       maxDropdownHeight={400}
       nothingFound="Nobody here"
       filter={(value, item) =>
         item.label?.toLowerCase().includes(value.toLowerCase().trim()) ||
-        item.description.toLowerCase().includes(value.toLowerCase().trim())
+        item.description?.toLowerCase().includes(value.toLowerCase().trim())
       }
       {...form.getInputProps("doctor")}
     />
