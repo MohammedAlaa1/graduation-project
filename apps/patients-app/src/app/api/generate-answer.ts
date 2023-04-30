@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+/*import type { NextApiRequest, NextApiResponse } from "next";
 import {Configuration, OpenAIApi} from 'openai'
 
 type ResponseData = {
@@ -37,4 +37,4 @@ export default async function handler(
 
     const response = aiResult.data.choices[0].text?.trim() || 'Sorry, there was a problem!'
     res.status(200).json({text: response})
-}
+}*/

@@ -1,8 +1,8 @@
 "use client"
 import { Container } from "@mantine/core"
-import AppointmentPage from "../../components/Appointments/Appointments"
+import MedicalRecord from "../../components/MedicalRecord/MedicalRecord"
 
-export default function Appointments() {
+export default function report() {
   return (
     <Container
       sx={(theme) => ({
@@ -15,7 +15,7 @@ export default function Appointments() {
       w={"100%"}
       h={"100%"}
     >
-      <AppointmentPage/>
+    <MedicalRecord/>
     </Container>
   )
 }
