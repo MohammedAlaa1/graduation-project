@@ -8,16 +8,16 @@ import {
   Select,
 } from "@mantine/core"
 import { DateTimePicker } from "@mantine/dates"
-import SelectDoctor from "./SelectDoctor"
-import { trpc } from "@/lib/trpc/trpc"
 import { useForm } from "@mantine/form"
+import { useState } from "react"
+import { set } from "zod"
 
 export default function BookingForm({
-  docSpecialities,
-  getSpecialitySelector,
-  saveBooking,
+  getDoctorsSpecialties,
+  getDoctorNamesBySpecialty,
+  saveFormDataToDB,
 }) {
-  // console.log("BOOKING FORM COMPONENT")
+  console.log("BOOKING FORM COMPONENT")
 
   const form = useForm({
     initialValues: {
@@ -34,15 +34,13 @@ export default function BookingForm({
         },*/
   })
 
-  function getSpeciality() {
-    getSpecialitySelector({ value: form.values.specilization })
-  }
+  const [specialisationSelectChangeEvent, setSpecializationSelectChangeEvent] =
+    useState("")
 
-  console.log(form.values.specilization)
   return (
     <form
       onSubmit={form.onSubmit((submitValues) =>
-        saveBooking({ values: submitValues })
+        saveFormDataToDB({ values: submitValues })
       )}
     >
       <Title
@@ -75,13 +73,25 @@ export default function BookingForm({
         <Select
           label="Doctor specilization"
           placeholder="Pick a specilization"
-          //SPREAD OPERATOR
-
-          onChange={getSpeciality()}
-          data={[...docSpecialities()]}
+          onChange={setSpecializationSelectChangeEvent}
+          data={[...getDoctorsSpecialties()]}
           {...form.getInputProps("specilization")}
         />
-        <SelectDoctor form={form} getSpecialitySelector={getSpecialitySelector}/>
+        <Select
+          name="doctor"
+          label="Choose doctor"
+          placeholder="Pick a doctor"
+          data={[
+            ...getDoctorNamesBySpecialty({ value: form.values.specilization }),
+          ]}
+          maxDropdownHeight={400}
+          nothingFound="No doctor found"
+          filter={(value, item) =>
+            item.label?.toLowerCase().includes(value.toLowerCase().trim()) ||
+            item.description?.toLowerCase().includes(value.toLowerCase().trim())
+          }
+          {...form.getInputProps("doctor")}
+        />
       </SimpleGrid>
       <Textarea
         mt="md"

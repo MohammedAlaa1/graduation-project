@@ -1,3 +1,4 @@
+import { useState } from "react"
 import BookingForm from "./components/BookingForm"
 import { trpc } from "@/lib/trpc/trpc"
 
@@ -8,30 +9,25 @@ export default function Booking() {
   console.log("Doctors data TRPC:", doctors)
 
   // FUNCTION TO RETURN SET WITH SPECIALTIES
-  const doctorsSpecialtiesSet = () => {
+  const getDoctorsSpecialties = () => {
     let docSpec = new Set()
 
     doctors &&
-      doctors.map((doc) => {
+      doctors?.map((doc) => {
         return docSpec.add(doc.specialty)
       })
     return docSpec
   }
 
-  //match = speciality (NEUROLOGY)
-  //Data set = doctors
-
-  // WRITE A FUNCTION THAT RETURN A DOCTOR NAME BASED ON SPECIALITY
-
-  const getDoctorNameArray = ({ value }) => {
-    console.log("SPECIALITY DATA from SELECTOR:", value)
-    let dataSet = doctors
-    // DO LOGIC HERE
-    let filteredDocs = dataSet?.filter(function(el){
-      return el.specialty === value
-    })
-    let names = filteredDocs?.map((obj)=>obj.name)
-    //console.log("docs names:",names)
+  const getDoctorNamesBySpecialty = ({ value }) => {
+    let names = []
+    value &&
+      doctors
+        ?.filter((doctor) => {
+          return doctor.specialty === value
+        })
+        .map((doctor) => names.push(doctor.name))
+    console.log("VALUE IS: ", value, names)
     return names
   }
 
@@ -44,20 +40,20 @@ export default function Booking() {
   const saveFormDataToDB = async ({ values }) => {
     console.log("SAVING USER DATA", values)
 
-  //   insertNewPatient.mutate({
+    //   insertNewPatient.mutate({
     //   data: {
-      //   reasonForVisit: values.reasonForVisit,
-        // appointmentDate: values.bookingDate,
-         
-      // },
+    //   reasonForVisit: values.reasonForVisit,
+    // appointmentDate: values.bookingDate,
+
+    // },
     // })
   }
 
   return (
     <BookingForm
-      docSpecialities={doctorsSpecialtiesSet}
-      saveBooking={saveFormDataToDB}
-      getSpecialitySelector={getDoctorNameArray}
+      getDoctorsSpecialties={getDoctorsSpecialties}
+      getDoctorNamesBySpecialty={getDoctorNamesBySpecialty}
+      saveFormDataToDB={saveFormDataToDB}
     />
   )
 }
