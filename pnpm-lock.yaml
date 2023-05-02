@@ -119,6 +119,9 @@ importers:
       '@types/react-dom':
         specifier: 18.0.11
         version: 18.0.11
+      cookie-cutter:
+        specifier: ^0.2.0
+        version: 0.2.0
       eslint:
         specifier: 8.36.0
         version: 8.36.0
@@ -1836,6 +1839,10 @@ packages:
 
   /convert-source-map@1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: false
+
+  /cookie-cutter@0.2.0:
+    resolution: {integrity: sha512-eVyP5liHjDMCmGlp2OD+qoin5TJlwUBRjBKN8R2yJ3ePf8xqUtqmRP6e36ipe0nBm2lTiertH6iHPOptNQzAEw==}
     dev: false
 
   /core-util-is@1.0.3:
