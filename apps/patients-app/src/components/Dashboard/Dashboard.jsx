@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card, Text, Button } from '@mantine/core';
 import { mdiVideo, mdiMessage, mdiCalendar } from '@mdi/js';
 import Icon from '@mdi/react';
+import Link from 'next/link';
 
 const cardStyle = {
   height: 300,
@@ -73,10 +74,10 @@ const Dashboard = () => {
         onClick={() => handleCardClick('message')}
       >
         <Icon path={mdiMessage} size={5} color="#0072C6" style={{ marginBottom: '2rem' }} />
-        <Text size="xl" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+     <Text size="xl" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
           Message Doctor
         </Text>
-        <Button style={{ backgroundColor: '#0072C6' }}>Send Message</Button>
+        <Link href="/messages"> <Button style={{ backgroundColor: '#0072C6' }}>Send Message</Button> </Link>
       </Card>
       <Card
         style={{
@@ -90,7 +91,7 @@ const Dashboard = () => {
         <Text size="xl" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
           Book and Show Appointments
         </Text>
-        <Button style={{ backgroundColor: '#0072C6' }}>Book Appointment</Button>
+        <Link href="/booking"><Button style={{ backgroundColor: '#0072C6' }}>Book Appointment</Button></Link>
       </Card>
     </div>
   );

@@ -93,10 +93,10 @@ const useStyles = createStyles((theme) => ({
 //SIDE MENU DATA
 const data = [
   { link: "/", label: "Home", icon: IconBellRinging },
-  { link: "/booking", label: "Appointments", icon: IconReceipt2 },
-  { link: "/history", label: "Medical History", icon: IconFingerprint },
-  { link: "/billing", label: "Billing", icon: Icon2fa },
-  { link: "/chat", label: "Chat ", icon: IconDatabaseImport },
+  { link: "/appointments", label: "Appointments", icon: IconReceipt2 },
+  { link: "/report", label: "Medical History", icon: IconFingerprint },
+  { link: "/booking", label: "Book an appointment", icon: Icon2fa },
+  { link: "/messages", label: "Talk with a doctor", icon: IconDatabaseImport },
   { link: "/settings", label: "Settings", icon: IconSettings },
 ]
 
