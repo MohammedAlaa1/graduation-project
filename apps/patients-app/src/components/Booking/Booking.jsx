@@ -31,7 +31,7 @@ export default function Booking() {
     return names
   }
 
-  let insertNewPatient = trpc.patient.createOnePatient.useMutation({
+  let insertNewPatient = trpc.appointment.createOneAppointment.useMutation({
     onSuccess: (data, variables, context) => {
       console.log("SUCCESS", data)
       //run custom code on success
@@ -40,13 +40,13 @@ export default function Booking() {
   const saveFormDataToDB = async ({ values }) => {
     console.log("SAVING USER DATA", values)
 
-    //   insertNewPatient.mutate({
-    //   data: {
-    //   reasonForVisit: values.reasonForVisit,
-    // appointmentDate: values.bookingDate,
+     insertNewPatient.mutate({
+       data: {
+       reasonForVisit: values.reasonForVisit,
+       appointmentDate: new Date(values.appointmentDate)
 
-    // },
-    // })
+     },
+     })
   }
 
   return (

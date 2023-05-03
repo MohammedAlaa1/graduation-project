@@ -22,7 +22,7 @@ export default function BookingForm({
   const form = useForm({
     initialValues: {
       reasonForVisit: "",
-      bookingDate: "",
+      appointmentDate: "",
       phoneNumber: 100,
       specilization: "",
       doctor: "",
@@ -60,7 +60,7 @@ export default function BookingForm({
           label="Pick date and time"
           placeholder="Pick date and time"
           maw={400}
-          {...form.getInputProps("bookingDate")}
+          {...form.getInputProps("appointmentDate")}
         />
         <NumberInput
           hideControls
