@@ -32,7 +32,7 @@ model Patient {
   address        String
   height         Float?
   weight         Float?
-  gender         Float?
+  gender         String?
   doctors        Doctor[]
   appointment    Appointment[]
   medicalHistory MedicalReport[]
