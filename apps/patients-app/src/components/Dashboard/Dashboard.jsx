@@ -54,20 +54,6 @@ const Dashboard = () => {
       <Card
         style={{
           ...cardStyle,
-          border: activeCard === 'video' ? '5px solid #0072C6' : 'none',
-          cursor: 'pointer',
-        }}
-        onClick={() => handleCardClick('video')}
-      >
-        <Icon path={mdiVideo} size={5} color="#0072C6" style={{ marginBottom: '2rem' }} />
-        <Text size="xl" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-          Video Call with Doctor
-        </Text>
-        <Button style={{ backgroundColor: '#0072C6' }}>Start Call</Button>
-      </Card>
-      <Card
-        style={{
-          ...cardStyle,
           border: activeCard === 'message' ? '5px solid #0072C6' : 'none',
           cursor: 'pointer',
         }}
@@ -92,6 +78,20 @@ const Dashboard = () => {
           Book and Show Appointments
         </Text>
         <Link href="/booking"><Button style={{ backgroundColor: '#0072C6' }}>Book Appointment</Button></Link>
+      </Card>
+      <Card
+        style={{
+          ...cardStyle,
+          border: activeCard === 'video' ? '5px solid #0072C6' : 'none',
+          cursor: 'pointer',
+        }}
+        onClick={() => handleCardClick('video')}
+      >
+        <Icon path={mdiVideo} size={5} color="#0072C6" style={{ marginBottom: '2rem' }} />
+        <Text size="xl" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+          Video Call with Doctor
+        </Text>
+        <Button style={{ backgroundColor: '#0072C6' }}>Start Call</Button>
       </Card>
     </div>
   );
