@@ -97,7 +97,7 @@ const data = [
   { link: "/report", label: "Medical History", icon: IconFingerprint },
   { link: "/booking", label: "Book an appointment", icon: Icon2fa },
   { link: "/messages", label: "Talk with a doctor", icon: IconDatabaseImport },
-  { link: "/settings", label: "Settings", icon: IconSettings },
+  { link: "/bot", label: "Talk to our bot", icon: IconSettings },
 ]
 
 export default function Navbar() {
