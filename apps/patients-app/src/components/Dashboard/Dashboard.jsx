@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react"
 import { Card, Text, Button, useMantineColorScheme } from "@mantine/core"
 import { mdiVideo, mdiMessage, mdiCalendar } from "@mdi/js"

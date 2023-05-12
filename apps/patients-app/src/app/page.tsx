@@ -1,11 +1,9 @@
-"use client"
-import { Container } from "@mantine/core"
 import Dashboard from "../components/Dashboard/Dashboard"
 
-export default function Home() {
+export default async function Home() {
   return (
-
-      <Dashboard/>
-
+    <>
+      <Dashboard />
+    </>
   )
 }

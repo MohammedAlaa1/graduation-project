@@ -1,11 +1,14 @@
 import { useState } from "react"
+import { signOut, useSession } from "next-auth/react"
+
 import {
   createStyles,
+  Center,
   Navbar as NavbarMantine,
   Group,
-  Code,
   getStylesRef,
   rem,
+  Text,
 } from "@mantine/core"
 import {
   IconBellRinging,
@@ -101,6 +104,8 @@ const data = [
 ]
 
 export default function Navbar() {
+  const { data: session } = useSession()
+
   const { classes, cx } = useStyles()
   const [active, setActive] = useState("Dashboard")
 
@@ -136,13 +141,14 @@ export default function Navbar() {
       </NavbarMantine.Section>
 
       <NavbarMantine.Section className={classes.footer}>
-        <a
-          href="#"
-          className={classes.link}
-          onClick={(event) => event.preventDefault()}
-        >
+        <Center>
+          <Text fz={"sm"}>
+            Logged in as: {`${session?.user?.name} (${session?.user?.email})`}
+          </Text>
+        </Center>
+        <a href="#" className={classes.link} onClick={() => signOut()}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
+          <span>{"Logout"}</span>
         </a>
       </NavbarMantine.Section>
     </NavbarMantine>

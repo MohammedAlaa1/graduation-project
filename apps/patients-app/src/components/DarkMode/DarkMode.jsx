@@ -13,7 +13,7 @@ export default function DarkMode() {
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
     >
-      {dark ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
+      {dark ? <IconSun size="2rem" /> : <IconMoonStars size="2rem" />}
     </ActionIcon>
   )
 }
