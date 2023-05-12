@@ -26,7 +26,7 @@ export default function Booking() {
         ?.filter((doctor) => {
           return doctor.specialty === value
         })
-        .map((doctor) => names.push(doctor.name))
+        .map((doctor) => names.push({ label: doctor.name, value: doctor.id }))
     console.log("VALUE IS: ", value, names)
     return names
   }
@@ -39,11 +39,12 @@ export default function Booking() {
   })
   const saveFormDataToDB = async ({ values }) => {
     console.log("SAVING USER DATA", values)
-
     insertNewPatient.mutate({
       data: {
+        patientId: "1f0b7dbe-f5dc-4c0e-a49e-dd29fe53ce52",
         reasonForVisit: values.reasonForVisit,
-        appointmentDate: new Date(values.appointmentDate),
+        appointmentDate: new Date(values.appointmentDate).toString(),
+        doctorId: values.doctor,
       },
     })
   }

@@ -23,7 +23,7 @@ export default function BookingForm({
     initialValues: {
       reasonForVisit: "",
       appointmentDate: "",
-      phoneNumber: 100,
+      phoneNumber: 0,
       specilization: "",
       doctor: "",
     },

@@ -60,7 +60,7 @@ model Appointment {
   reasonForVisit  String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  appointmentDate DateTime @unique
+  appointmentDate String @unique
   status          String?
   doctor          Doctor   @relation(fields: [doctorId], references: [id])
   doctorId        String
