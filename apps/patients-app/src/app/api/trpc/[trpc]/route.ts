@@ -1,6 +1,6 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch"
 import { appRouter } from "../generated/routers/index"
-import { createContext } from "@/lib/trpc/context"
+import { createContext } from "@/config/trpc/context"
 
 const handler = (request: Request) => {
   console.log(`incoming request ${request.url}`)

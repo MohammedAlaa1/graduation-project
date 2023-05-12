@@ -40,7 +40,7 @@ const Dashboard = () => {
           alignItems: "center",
           justifyContent: "space-between",
           width: "100%",
-          backgroundColor: colorScheme === "dark" ? "#0072C6" : "azure",
+          backgroundColor: colorScheme === "dark" ? "#0072C6" : "#FFFFFF",
           padding: "1rem 2rem",
           boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.1)",
           marginBottom: "2rem",

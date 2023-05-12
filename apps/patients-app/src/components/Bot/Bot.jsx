@@ -1,10 +1,11 @@
 "use client"
 import { useState } from "react"
-import { TextInput, Button, Text } from "@mantine/core"
+import { TextInput, Button, Text, useMantineColorScheme } from "@mantine/core"
 
 export default function Chatbot({ handleFormSubmit }) {
   const [message, setMessage] = useState("")
   const [chatHistory, setChatHistory] = useState([])
+  let { colorScheme } = useMantineColorScheme()
 
   const handleSendMessage = async (data) => {
     // Logic to send message to chatbot
@@ -25,7 +26,7 @@ export default function Chatbot({ handleFormSubmit }) {
       maxWidth: 600,
       margin: "auto",
       padding: 16,
-      backgroundColor: "#FFFFFF",
+      backgroundColor: colorScheme === "light" ? "#FFFFFF" : "#2C2E33",
       minHeight: "100vh",
       display: "flex",
       flexDirection: "column",
@@ -37,7 +38,8 @@ export default function Chatbot({ handleFormSubmit }) {
     header: {
       textAlign: "center",
       marginBottom: 32,
-      color: "#333333",
+      color: colorScheme === "light" ? "#333333" : "#DEE2E6",
+
       fontWeight: 700,
       fontSize: 48,
       textTransform: "uppercase",
@@ -47,10 +49,11 @@ export default function Chatbot({ handleFormSubmit }) {
       height: 400,
       width: "100%",
       maxWidth: 600,
-      overflowY: "scroll",
+      overflowY: "auto",
       marginBottom: 32,
       borderRadius: 8,
-      backgroundColor: "#F7F7F7",
+      backgroundColor: colorScheme === "light" ? "#F7F7F7" : "#343A40",
+
       boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
       display: "flex",
       flexDirection: "column",
@@ -70,7 +73,7 @@ export default function Chatbot({ handleFormSubmit }) {
       animation: "$fadeIn 0.3s ease-in-out",
     },
     chatbotMessage: {
-      backgroundColor: "#EFEFEF",
+      backgroundColor: colorScheme === "light" ? "#EFEFEF" : "#868E96",
       borderRadius: 16,
       padding: "12px 16px",
       marginBottom: 16,
@@ -92,7 +95,7 @@ export default function Chatbot({ handleFormSubmit }) {
       marginRight: 8,
       borderRadius: 16,
       borderColor: "#EFEFEF",
-      backgroundColor: "#F7F7F7",
+      backgroundColor: colorScheme === "light" ? "#F7F7F7" : "#495057",
       padding: "12px 16px",
       boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
       fontSize: 18,
@@ -106,7 +109,6 @@ export default function Chatbot({ handleFormSubmit }) {
       backgroundColor: "#2B8BFF",
       color: "#FFFFFF",
       fontWeight: "bold",
-      padding: "12px 24px",
       boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
       fontSize: 18,
       ":hover": {

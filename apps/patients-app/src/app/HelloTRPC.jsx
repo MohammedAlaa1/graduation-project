@@ -1,5 +1,5 @@
 "use client"
-import { trpc } from "../lib/trpc/trpc"
+import { trpc } from "../config/trpc/trpc"
 import { TextInput, Text, Button, Group, Box } from "@mantine/core"
 import { useForm } from "@mantine/form"
 

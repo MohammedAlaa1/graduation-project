@@ -1,6 +1,6 @@
 import { useState } from "react"
 import BookingForm from "./components/BookingForm"
-import { trpc } from "@/lib/trpc/trpc"
+import { trpc } from "@/config/trpc/trpc"
 
 export default function Booking() {
   console.log("BOOKING ROOT COMPONENT")
@@ -40,13 +40,12 @@ export default function Booking() {
   const saveFormDataToDB = async ({ values }) => {
     console.log("SAVING USER DATA", values)
 
-     insertNewPatient.mutate({
-       data: {
-       reasonForVisit: values.reasonForVisit,
-       appointmentDate: new Date(values.appointmentDate)
-
-     },
-     })
+    insertNewPatient.mutate({
+      data: {
+        reasonForVisit: values.reasonForVisit,
+        appointmentDate: new Date(values.appointmentDate),
+      },
+    })
   }
 
   return (

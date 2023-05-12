@@ -1,5 +1,5 @@
 import Bot from "../../components/Bot/Bot"
-import { openai } from "../../lib/chatGPT/chatGPT"
+import { openai } from "../../config/chatGPT/chatGPT"
 
 async function getResponse(data) {
   "use server"

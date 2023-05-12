@@ -10,7 +10,7 @@ generator trpc {
   withZod        = true
   withMiddleware = false
   withShield     = false
-  contextPath    = "../lib/trpc/context"
+  contextPath    = "../config/trpc/context"
   output         = "../app/api/trpc/generated"
 }
 

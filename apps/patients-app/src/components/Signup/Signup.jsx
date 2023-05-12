@@ -1,5 +1,5 @@
 "use client"
-import { trpc } from "../../lib/trpc/trpc"
+import { trpc } from "../../config/trpc/trpc"
 import { useForm } from "@mantine/form"
 import SignUpForm from "./components/SignupForm"
 

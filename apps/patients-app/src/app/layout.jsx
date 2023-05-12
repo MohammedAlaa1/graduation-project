@@ -1,5 +1,5 @@
 import RootStyleRegistry from "./emotion"
-import { TrpcProvider } from "../lib/trpc/TrpcProvider"
+import { TrpcProvider } from "../config/trpc/TrpcProvider"
 import AppLayout from "@/components/AppLayout/AppLayout"
 import SignIn from "@/components/SignIn/"
 
