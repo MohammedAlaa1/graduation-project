@@ -9,7 +9,7 @@ async function getResponse(data) {
     model: "gpt-3.5-turbo",
     messages: [{ role: "user", content: `${data?.get("message")})` }],
     temperature: 0.9,
-    max_tokens: 2048,
+    max_tokens: 1024,
     frequency_penalty: 0.5,
     presence_penalty: 0,
   })
