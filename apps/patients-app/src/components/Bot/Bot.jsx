@@ -1,20 +1,23 @@
 "use client"
 import { useState } from "react"
 import { TextInput, Button, Text } from "@mantine/core"
-import cookieCutter from "cookie-cutter"
 
-export default function Chatbot({ responseData }) {
+export default function Chatbot({ handleFormSubmit }) {
   const [message, setMessage] = useState("")
-  const [response, setResponse] = useState("")
-
   const [chatHistory, setChatHistory] = useState([])
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (data) => {
     // Logic to send message to chatbot
-    setChatHistory([...chatHistory, { sender: "user", message }])
+    // setChatHistory([...chatHistory, { sender: "user", message }])
+    let responseData = await handleFormSubmit(data)
+    setChatHistory([
+      ...chatHistory,
+      { sender: "user", message },
+      { sender: "chatGPT", response: responseData },
+    ])
     setMessage("")
-    cookieCutter.set("userInput", message)
-    setResponse(responseData)
+
+    console.log("ChatGPT Response", responseData)
   }
 
   const styles = {
@@ -117,39 +120,37 @@ export default function Chatbot({ responseData }) {
   }
 
   return (
-    <div style={styles.container}>
-      <Text style={styles.header}>Chatbot</Text>
-      <div style={styles.chatContainer}>
-        {chatHistory.map((chat, index) => (
-          <div
-            key={index}
-            style={
-              chat.sender === "user"
-                ? styles.chatMessage
-                : styles.chatbotMessage
-            }
-          >
-            <Text>{chat.message}</Text>
-            <Text>{chat.response}</Text>
-          </div>
-        ))}
+    <form action={handleSendMessage}>
+      <div style={styles.container}>
+        <Text style={styles.header}>Chatbot</Text>
+        <div style={styles.chatContainer}>
+          {chatHistory.map((chat, index) => (
+            <div
+              key={index}
+              style={
+                chat.sender === "user"
+                  ? styles.chatMessage
+                  : styles.chatbotMessage
+              }
+            >
+              <Text>{chat.message}</Text>
+              <Text>{chat.response}</Text>
+            </div>
+          ))}
+        </div>
+        <div style={styles.messageContainer}>
+          <TextInput
+            name="message"
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+            placeholder="Type your message here..."
+            style={styles.input}
+          />
+          <Button type="submit" style={styles.button}>
+            Send
+          </Button>
+        </div>
       </div>
-      <div style={styles.messageContainer}>
-        <TextInput
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          placeholder="Type your message here..."
-          style={styles.input}
-        />
-        <Button
-          onClick={async () => {
-            handleSendMessage()
-          }}
-          style={styles.button}
-        >
-          Send
-        </Button>
-      </div>
-    </div>
+    </form>
   )
 }

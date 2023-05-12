@@ -1,5 +1,5 @@
 "use client"
-import { ActionIcon, useMantineColorScheme } from "@mantine/core"
+import { ActionIcon, Stack, useMantineColorScheme } from "@mantine/core"
 import { IconSun, IconMoonStars } from "@tabler/icons-react"
 
 export default function DarkMode() {
@@ -8,7 +8,7 @@ export default function DarkMode() {
 
   return (
     <ActionIcon
-      variant="outline"
+      variant="transparent"
       color={dark ? "yellow" : "blue"}
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"

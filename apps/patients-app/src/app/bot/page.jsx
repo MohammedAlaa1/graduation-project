@@ -1,26 +1,21 @@
 import Bot from "../../components/Bot/Bot"
 import { openai } from "../../lib/chatGPT/chatGPT"
-import cookieCutter from "cookie-cutter"
 
-async function getResponse() {
+async function getResponse(data) {
+  "use server"
+  console.log("HELLO FROM THE SERVER", data?.get("message"))
+
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: "Who won the world series in 2020?" }],
+    messages: [{ role: "user", content: `${data?.get("message")})` }],
     temperature: 0.9,
     max_tokens: 2048,
     frequency_penalty: 0.5,
     presence_penalty: 0,
   })
-  return response
+  return response?.data?.choices[0]?.message.content
 }
 
 export default async function Home() {
-  let userInput = cookieCutter.get("userInput")
-
-  let response = await getResponse({
-    input: userInput,
-  })
-
-  let output = response?.data?.choices[0]?.message.content
-  return <Bot responseData={output} />
+  return <Bot handleFormSubmit={getResponse} />
 }

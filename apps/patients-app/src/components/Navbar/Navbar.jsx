@@ -123,9 +123,14 @@ export default function Navbar() {
   return (
     <NavbarMantine height={"100vh"} width={{ sm: 300 }} p="md">
       <NavbarMantine.Section grow>
-        <Group className={classes.header} position="apart">
-          <Image priority src="./next.svg" height={60} width={60} alt="Logo" />
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
+        <Group className={classes.header} position="center">
+          <Image
+            priority
+            src="./next.svg"
+            height={100}
+            width={100}
+            alt="Logo"
+          />
         </Group>
         {links}
       </NavbarMantine.Section>

@@ -1,55 +1,66 @@
-import { useState } from 'react';
-import { Button, Card, Input, Select } from '@mantine/core';
+import { useState } from "react"
+import {
+  Button,
+  Card,
+  useMantineColorScheme,
+  Input,
+  Select,
+  Title,
+} from "@mantine/core"
 
 // Sample data for appointments
 const appointments = [
   {
     id: 1,
-    date: '2023-05-05',
-    doctor: 'Dr. John Doe',
-    specialty: 'Cardiology'
+    date: "2023-05-05",
+    doctor: "Dr. John Doe",
+    specialty: "Cardiology",
   },
   {
     id: 2,
-    date: '2023-05-08',
-    doctor: 'Dr. Jane Smith',
-    specialty: 'Dermatology'
+    date: "2023-05-08",
+    doctor: "Dr. Jane Smith",
+    specialty: "Dermatology",
   },
   {
     id: 3,
-    date: '2023-05-10',
-    doctor: 'Dr. Peter Parker',
-    specialty: 'Neurology'
-  }
-];
+    date: "2023-05-10",
+    doctor: "Dr. Peter Parker",
+    specialty: "Neurology",
+  },
+]
 
 export default function AppointmentPage() {
-  const [appointmentData, setAppointmentData] = useState(appointments);
-
+  const [appointmentData, setAppointmentData] = useState(appointments)
+  let { colorScheme } = useMantineColorScheme()
   const handleDeleteAppointment = (id) => {
     // Remove the appointment from the appointmentData array
-    const updatedData = appointmentData.filter((appointment) => appointment.id !== id);
-    setAppointmentData(updatedData);
-  };
+    const updatedData = appointmentData.filter(
+      (appointment) => appointment.id !== id
+    )
+    setAppointmentData(updatedData)
+  }
 
   const handleUpdateAppointment = (id, updatedData) => {
     // Update the appointment with the new data
     const updatedAppointments = appointmentData.map((appointment) => {
       if (appointment.id === id) {
-        return { ...appointment, ...updatedData };
+        return { ...appointment, ...updatedData }
       } else {
-        return appointment;
+        return appointment
       }
-    });
-    setAppointmentData(updatedAppointments);
-  };
+    })
+    setAppointmentData(updatedAppointments)
+  }
 
   return (
     <div>
-      <h1>Your Appointments</h1>
+      <Title c={colorScheme === "dark" ? "gray.3" : "dark.8"}>
+        Your Appointments
+      </Title>
       {appointmentData.map((appointment) => (
-        <Card key={appointment.id} style={{ marginBottom: '1rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Card key={appointment.id} style={{ marginBottom: "1rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <h2>{appointment.doctor}</h2>
               <p>{appointment.specialty}</p>
@@ -64,13 +75,13 @@ export default function AppointmentPage() {
                 Delete
               </Button>
               <Button
-                style={{ marginLeft: '1rem' }}
+                style={{ marginLeft: "1rem" }}
                 color="blue"
                 variant="outline"
                 onClick={() =>
                   handleUpdateAppointment(appointment.id, {
-                    date: '2023-06-01', // Updated date value
-                    doctor: 'Dr. Jane Smith' // Updated doctor value
+                    date: "2023-06-01", // Updated date value
+                    doctor: "Dr. Jane Smith", // Updated doctor value
                   })
                 }
               >
@@ -81,5 +92,5 @@ export default function AppointmentPage() {
         </Card>
       ))}
     </div>
-  );
+  )
 }

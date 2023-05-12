@@ -6,11 +6,11 @@ import {
   Title,
   Button,
   Select,
+  useMantineColorScheme,
 } from "@mantine/core"
 import { DateTimePicker } from "@mantine/dates"
 import { useForm } from "@mantine/form"
 import { useState } from "react"
-import { set } from "zod"
 
 export default function BookingForm({
   getDoctorsSpecialties,
@@ -18,7 +18,7 @@ export default function BookingForm({
   saveFormDataToDB,
 }) {
   console.log("BOOKING FORM COMPONENT")
-
+  let { colorScheme } = useMantineColorScheme()
   const form = useForm({
     initialValues: {
       reasonForVisit: "",
@@ -46,7 +46,7 @@ export default function BookingForm({
       <Title
         order={2}
         size="h1"
-        sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}` })}
+        c={colorScheme === "dark" ? "gray.3" : "dark.9"}
         weight={900}
         align="center"
       >
