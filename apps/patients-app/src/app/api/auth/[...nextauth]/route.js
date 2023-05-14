@@ -53,7 +53,7 @@ const authOptions = {
         user: {
           ...session.user,
           id: token.id,
-          randomKey: token.randomKey,
+          // randomKey: token.randomKey,
         },
       }
     },
@@ -63,7 +63,7 @@ const authOptions = {
         return {
           ...token,
           id: u.id,
-          randomKey: u.randomKey,
+          // randomKey: u.randomKey,
         }
       }
       return token
